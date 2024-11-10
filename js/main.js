@@ -1,3 +1,1 @@
-import {createPhotoDescriptionArray} from './create-photo-description.js';
-
-createPhotoDescriptionArray();
+import './create-photo-thumbnails.js';
