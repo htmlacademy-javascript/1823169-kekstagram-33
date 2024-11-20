@@ -1,4 +1,4 @@
-import {containerComments, renderComments, bigPhotoCommentLoaderб shownCommentsCount, changeShownCommentsCount} from './photo-comments.js';
+import {containerComments, renderComments, bigPhotoCommentLoader, changeShownCommentsCount} from './photo-comments.js';
 import {openModal, closeModal, isEnterKey} from './utils.js';
 import {photosThumbnailsList, containerPhotosThumbnails} from './photo-thumbnails.js';
 

@@ -33,8 +33,7 @@ const renderComments = (commentsList) => {
     fragment.appendChild(commentElement);
   });
 
-  shownCommentsCount += commentsToShow.length;
-  bigPhotoShownComments.textContent = shownCommentsCount;
+  changeShownCommentsCount(shownCommentsCount + commentsToShow.length);
 
   if (shownCommentsCount >= commentsList.length) {
     bigPhotoCommentLoader.classList.add('hidden');
@@ -45,4 +44,4 @@ const renderComments = (commentsList) => {
   containerComments.appendChild(fragment);
 };
 
-export {containerComments, renderComments, bigPhotoCommentLoader, shownCommentsCount, changeShownCommentsCount};
+export {containerComments, renderComments, bigPhotoCommentLoader, changeShownCommentsCount};
