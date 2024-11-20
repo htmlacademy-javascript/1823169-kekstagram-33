@@ -17,6 +17,11 @@ const createBigPhotoComment = (commentData) => {
 
 let shownCommentsCount = 0;
 
+// функция для возможности изменять переменную в другом модуле
+const changeShownCommentsCount = (value) => {
+  shownCommentsCount = value;
+};
+
 const renderComments = (commentsList) => {
   const fragment = document.createDocumentFragment();
   const startIndex = shownCommentsCount;
@@ -40,4 +45,4 @@ const renderComments = (commentsList) => {
   containerComments.appendChild(fragment);
 };
 
-export {containerComments, renderComments, bigPhotoCommentLoader};
+export {containerComments, renderComments, bigPhotoCommentLoader, shownCommentsCount, changeShownCommentsCount};
