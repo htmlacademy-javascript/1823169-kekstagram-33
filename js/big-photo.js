@@ -1,4 +1,4 @@
-import {containerComments, renderComments, bigPhotoCommentLoader} from './photo-comments.js';
+import {containerComments, renderComments, bigPhotoCommentLoaderб shownCommentsCount, changeShownCommentsCount} from './photo-comments.js';
 import {openModal, closeModal, isEnterKey} from './utils.js';
 import {photosThumbnailsList, containerPhotosThumbnails} from './photo-thumbnails.js';
 
@@ -10,7 +10,6 @@ const bigPhotoDescription = bigPhoto.querySelector('.social__caption');
 const bigPhotoClose = bigPhoto.querySelector('.big-picture__cancel');
 
 let currentComments = [];
-let shownCommentsCount = 0;
 
 function createBigPhoto (photoData) {
   bigPhotoImg.src = photoData.url;
@@ -20,7 +19,7 @@ function createBigPhoto (photoData) {
   bigPhotoDescription.textContent = photoData.description;
 
   containerComments.innerHTML = '';
-  shownCommentsCount = 0;
+  changeShownCommentsCount(0);
   currentComments = photoData.comments;
 
   renderComments(currentComments);
@@ -51,7 +50,7 @@ bigPhotoCommentLoader.addEventListener('click', () => {
 
 bigPhotoClose.addEventListener('click', () => {
   closeModal(bigPhoto);
-  shownCommentsCount = 0;
+  changeShownCommentsCount(0);
   currentComments = [];
   containerComments.innerHTML = '';
 });
