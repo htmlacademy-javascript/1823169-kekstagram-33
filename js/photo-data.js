@@ -13,7 +13,7 @@ let currentPhotoLink = 1;
 
 const createPhotoComment = () => ({
   id: currentCommentId++,
-  avatar: `../img/avatar-${getRandomNumber(AVATARS_QUANTITY.min, AVATARS_QUANTITY.max)}.svg`,
+  avatar: `./img/avatar-${getRandomNumber(AVATARS_QUANTITY.min, AVATARS_QUANTITY.max)}.svg`,
   message: getRandomArrayElement(COMMENTS_ABOUT_PHOTO),
   name: getRandomArrayElement(NAMES_OF_COMMENTATORS)
 });
