@@ -34,6 +34,7 @@ const renderComments = (commentsList) => {
   });
 
   changeShownCommentsCount(shownCommentsCount + commentsToShow.length);
+  bigPhotoShownComments.textContent = shownCommentsCount;
 
   if (shownCommentsCount >= commentsList.length) {
     bigPhotoCommentLoader.classList.add('hidden');
