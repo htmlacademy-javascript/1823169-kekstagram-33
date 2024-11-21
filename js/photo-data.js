@@ -13,17 +13,22 @@ let currentPhotoLink = 1;
 
 const createPhotoComment = () => ({
   id: currentCommentId++,
-  avatar: `../img/avatar-${getRandomNumber(AVATARS_QUANTITY.min, AVATARS_QUANTITY.max)}.svg`,
+  avatar: `./img/avatar-${getRandomNumber(AVATARS_QUANTITY.min, AVATARS_QUANTITY.max)}.svg`,
   message: getRandomArrayElement(COMMENTS_ABOUT_PHOTO),
   name: getRandomArrayElement(NAMES_OF_COMMENTATORS)
 });
 
+const createCommentsArray = () => {
+  const commentsArray = Array.from({length: getRandomNumber(COMMENTS_QUANTITY.min, COMMENTS_QUANTITY.max)}, createPhotoComment);
+  return commentsArray;
+};
+
 const createPhotoDescription = () => ({
   id: currentPhotoId++,
-  url: `../photos/${currentPhotoLink++}.jpg`,
+  url: `./photos/${currentPhotoLink++}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS_PHOTO),
   likes: getRandomNumber(LIKES_QUANTITY.min, LIKES_QUANTITY.max),
-  comments: Array.from({length: getRandomNumber(COMMENTS_QUANTITY.min, COMMENTS_QUANTITY.max)}, createPhotoComment)
+  comments: createCommentsArray()
 });
 
 const createPhotoDescriptionArray = () => {
