@@ -1,6 +1,7 @@
 import {createPhotoDescriptionArray} from './photo-data.js';
-import {openModal, isEnterKey} from './utils.js';
-import {bigPhoto, createBigPhoto} from './big-photo.js';
+import {isEnterKey} from './utils.js';
+import {openBigPhoto} from './big-photo.js';
+import './photo-data.js';
 
 const containerPhotosThumbnails = document.querySelector('.pictures');
 const photoThumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -15,14 +16,12 @@ const createPhotoThumbnail = (photoData) => {
   photoThumbnail.querySelector('.picture__likes').textContent = photoData.likes;
 
   photoThumbnail.addEventListener('click', () => {
-    createBigPhoto(photoData);
-    openModal(bigPhoto);
+    openBigPhoto(photoData);
   });
 
   photoThumbnail.addEventListener('keydown', (evt) => {
     if (isEnterKey (evt)) {
-      createBigPhoto(photoData);
-      openModal(bigPhoto);
+      openBigPhoto(photoData);
     }
   });
 
