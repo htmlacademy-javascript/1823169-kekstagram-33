@@ -1,6 +1,5 @@
 import {containerComments, renderComments, bigPhotoCommentLoader, changeShownCommentsCount} from './photo-comments.js';
-import {openModal, closeModal, isEnterKey} from './utils.js';
-import {photosThumbnailsList, containerPhotosThumbnails} from './photo-thumbnails.js';
+import {openModal, closeModal} from './utils.js';
 
 const bigPhoto = document.querySelector('.big-picture');
 const bigPhotoImg = bigPhoto.querySelector('.big-picture__img').querySelector('img');
@@ -25,24 +24,10 @@ function createBigPhoto (photoData) {
   renderComments(currentComments);
 }
 
-function onThumbNailClick (evt) {
-  const thumbnail = evt.target.closest('.picture');
-
-  if (thumbnail) {
-    const index = parseInt(thumbnail.dataset.index);
-    const photoData = photosThumbnailsList[index];
-    createBigPhoto(photoData);
-    openModal(bigPhoto);
-  }
-}
-
-containerPhotosThumbnails.addEventListener('click', onThumbNailClick);
-
-containerPhotosThumbnails.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    onThumbNailClick(evt);
-  }
-});
+const openBigPhoto = (photoData) => {
+  createBigPhoto(photoData);
+  openModal(bigPhoto);
+};
 
 bigPhotoCommentLoader.addEventListener('click', () => {
   renderComments(currentComments);
@@ -54,3 +39,5 @@ bigPhotoClose.addEventListener('click', () => {
   currentComments = [];
   containerComments.innerHTML = '';
 });
+
+export {openBigPhoto};
