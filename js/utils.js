@@ -33,4 +33,4 @@ function closeModal (modalName) {
   body.classList.remove('modal-open');
 }
 
-export {getRandomNumber, getRandomArrayElement, openModal, closeModal, isEnterKey};
+export {getRandomNumber, getRandomArrayElement, openModal, closeModal, isEnterKey, isEscapeKey};

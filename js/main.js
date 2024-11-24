@@ -1,5 +1,5 @@
 import {renderPhotosThumbnails, photosThumbnailsList} from './photo-thumbnails.js';
-import './big-photo.js';
+import './photo-upload-form.js';
 
 renderPhotosThumbnails(photosThumbnailsList);
 
