@@ -29,7 +29,6 @@ photoUploadForm.addEventListener('input', () => {
 
 newPhotoClose.addEventListener('click', () => {
   closeModal(photoUploadWindow);
-  photoUploadForm.reset();
 });
 
 export {newPhotoHashtagsInput};

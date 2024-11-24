@@ -1,5 +1,5 @@
 import {containerComments, renderComments, bigPhotoCommentLoader, changeShownCommentsCount} from './photo-comments.js';
-import {closeModal} from './utils.js';
+import {openModal, closeModal} from './utils.js';
 
 const bigPhoto = document.querySelector('.big-picture');
 const bigPhotoImg = bigPhoto.querySelector('.big-picture__img').querySelector('img');
@@ -24,6 +24,11 @@ function createBigPhoto (photoData) {
   renderComments(currentComments);
 }
 
+const openBigPhoto = (photoData) => {
+  createBigPhoto(photoData);
+  openModal(bigPhoto);
+};
+
 bigPhotoCommentLoader.addEventListener('click', () => {
   renderComments(currentComments);
 });
@@ -35,4 +40,4 @@ bigPhotoClose.addEventListener('click', () => {
   containerComments.innerHTML = '';
 });
 
-export {createBigPhoto, bigPhoto};
+export {openBigPhoto};
