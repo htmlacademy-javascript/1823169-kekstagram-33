@@ -13,8 +13,8 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-function resetForm() {
-  const form = document.querySelector('form');
+function resetForm (modalName) {
+  const form = modalName.querySelector('form');
   if (form) {
     form.reset();
   }
@@ -27,6 +27,7 @@ function openModal (modalName) {
   const onEscapePress = (evt) => {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
+      resetForm(modalName);
       closeModal(modalName);
       document.removeEventListener('keydown', onEscapePress);
     }
@@ -38,7 +39,7 @@ function openModal (modalName) {
 function closeModal (modalName) {
   modalName.classList.add('hidden');
   body.classList.remove('modal-open');
-  resetForm();
+  resetForm(modalName);
 }
 
 export {getRandomNumber, getRandomArrayElement, openModal, closeModal, isEnterKey, isEscapeKey};
