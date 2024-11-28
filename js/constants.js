@@ -61,6 +61,62 @@ const SIZE_SCALE = {
   STEP: 25
 };
 
+const EFFECTS = {
+  none: {
+    name: 'none',
+    filter: '',
+    unit: '',
+    min: 0,
+    max: 100,
+    step: 1,
+  },
+
+  chrome: {
+    name: 'chrome',
+    filter: 'grayscale',
+    unit: '',
+    min: 0,
+    max: 1,
+    step: 0.1,
+  },
+
+  sepia: {
+    name: 'sepia',
+    filter: 'sepia',
+    unit: '',
+    min: 0,
+    max: 1,
+    step: 0.1,
+  },
+
+  marvin: {
+    name: 'marvin',
+    filter: 'invert',
+    unit: '%',
+    min: 0,
+    max: 100,
+    step: 1,
+  },
+
+  phobos: {
+    name: 'phobos',
+    filter: 'blur',
+    unit: 'px',
+    min: 0,
+    max: 3,
+    step: 0.1,
+  },
+
+  heat: {
+    name: 'heat',
+    filter: 'brightness',
+    unit: '',
+    min: 1,
+    max: 3,
+    step: 0.1,
+  },
+};
+
 export {PHOTO_DESCRIPTION_ARRAY_LENGTH,
   COMMENTS_QUANTITY,
   AVATARS_QUANTITY,
@@ -69,4 +125,5 @@ export {PHOTO_DESCRIPTION_ARRAY_LENGTH,
   COMMENTS_ABOUT_PHOTO,
   DESCRIPTIONS_PHOTO,
   COMMENTS_PER_PORTION,
-  SIZE_SCALE};
+  SIZE_SCALE,
+  EFFECTS};
