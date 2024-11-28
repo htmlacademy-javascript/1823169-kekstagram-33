@@ -1,4 +1,5 @@
 import {initializeScale} from './photo-size-scale.js';
+import {initializeSlider} from './photo-effects.js';
 import {openModal, closeModal, isEscapeKey} from './utils.js';
 import {pristine, photoUploadForm, newPhotoHashtagsInput} from './pristine.js';
 
@@ -18,8 +19,9 @@ newPhotoInputs.forEach (input => {
 });
 
 photoUploadOpen.addEventListener('change', () => {
-  openModal(photoUploadWindow);
   initializeScale();
+  initializeSlider();
+  openModal(photoUploadWindow);
 });
 
 photoUploadForm.addEventListener('input', () => {
