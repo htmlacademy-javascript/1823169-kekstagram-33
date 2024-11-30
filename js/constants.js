@@ -1,3 +1,10 @@
+const BASE_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
+
+const ROUTE = {
+  GET_DATA: '/data',
+  SEND_DATA: '/',
+};
+
 const PHOTO_DESCRIPTION_ARRAY_LENGTH = 25;
 
 const COMMENTS_QUANTITY = {
@@ -17,42 +24,9 @@ const LIKES_QUANTITY = {
 
 const COMMENTS_PER_PORTION = 5;
 
-const NAMES_OF_COMMENTATORS = [
-  'Неопознанный Енот',
-  'Опознанный Енот',
-  'РоМаШеЧкА',
-  'Ирина',
-  'Andrey777',
-  'Пётр',
-  'Геннадий Александрович',
-  'l0lla',
-  'Сиреневенькая Глазовыколупывательница',
-  'Аня'
-];
+const MAX_HASHTAGS = 5;
 
-const COMMENTS_ABOUT_PHOTO = [
-  'Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.',
-  'В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают.',
-  'Как можно было поймать такой неудачный момент?!'
-];
-
-const DESCRIPTIONS_PHOTO = [
-  'Утренний туман над спокойным озером.',
-  'Яркие цветы цветут в летнем саду.',
-  'Прекрасный закат окрашивает небосвод в розовый.',
-  'Дети играют на зелёном травяном лужайке.',
-  'Горы покрыты белоснежным зимним покровом.',
-  'Старинный мост свисает над рекой.',
-  'Улыбка счастливой пары под дождём.',
-  'Солнечные лучи пробиваются сквозь деревья.',
-  'Уютная кофейня на улице в осенний день.',
-  'Корабли на горизонте солнцем залиты.'
-];
+const MAX_DESCRIPTION_LENGTH = 140;
 
 const SIZE_SCALE = {
   MIN: 25,
@@ -117,13 +91,14 @@ const EFFECTS = {
   },
 };
 
-export {PHOTO_DESCRIPTION_ARRAY_LENGTH,
+export {BASE_URL,
+  ROUTE,
+  PHOTO_DESCRIPTION_ARRAY_LENGTH,
   COMMENTS_QUANTITY,
   AVATARS_QUANTITY,
   LIKES_QUANTITY,
-  NAMES_OF_COMMENTATORS,
-  COMMENTS_ABOUT_PHOTO,
-  DESCRIPTIONS_PHOTO,
+  MAX_HASHTAGS,
+  MAX_DESCRIPTION_LENGTH,
   COMMENTS_PER_PORTION,
   SIZE_SCALE,
   EFFECTS};
