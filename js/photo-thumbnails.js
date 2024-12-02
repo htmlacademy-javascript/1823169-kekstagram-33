@@ -1,11 +1,8 @@
-import {createPhotoDescriptionArray} from './photo-data.js';
 import {isEnterKey} from './utils.js';
 import {openBigPhoto} from './big-photo.js';
-import './photo-data.js';
 
 const containerPhotosThumbnails = document.querySelector('.pictures');
 const photoThumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const photosThumbnailsList = createPhotoDescriptionArray();
 
 const createPhotoThumbnail = (photoData) => {
   const photoThumbnail = photoThumbnailTemplate.cloneNode(true);
@@ -39,6 +36,6 @@ const renderPhotosThumbnails = (photosList) => {
   containerPhotosThumbnails.appendChild(fragment);
 };
 
-export {renderPhotosThumbnails, photosThumbnailsList, containerPhotosThumbnails};
+export {renderPhotosThumbnails, containerPhotosThumbnails};
 
 

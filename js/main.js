@@ -1,5 +1,13 @@
-import {renderPhotosThumbnails, photosThumbnailsList} from './photo-thumbnails.js';
+import {renderPhotosThumbnails} from './photo-thumbnails.js';
+import {getData} from './api.js';
+import {showDataError} from './show-message.js';
 import './photo-upload-form.js';
 
-renderPhotosThumbnails(photosThumbnailsList);
+getData()
+  .then((data) => {
+    renderPhotosThumbnails(data);
+  })
+  .catch(() => {
+    showDataError();
+  });
 
