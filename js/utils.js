@@ -1,3 +1,5 @@
+import {DEBOUNCE_TIME} from './constants.js';
+
 const body = document.querySelector('body');
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
@@ -33,4 +35,24 @@ function closeModal (modalName) {
   clearInputs();
 }
 
-export {openModal, closeModal, isEnterKey, isEscapeKey, body};
+function debounce (callback, timeoutDelay = DEBOUNCE_TIME) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+function shuffleArray(array) {
+  const shuffled = [...array];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled;
+};
+
+export {openModal, closeModal, isEnterKey, isEscapeKey, body, shuffleArray, debounce};

@@ -1,6 +1,5 @@
 import {BASE_URL, ROUTE} from './constants.js';
 
-
 const Method = {
   GET: 'GET',
   POST: 'POST',
