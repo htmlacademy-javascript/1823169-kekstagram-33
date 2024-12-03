@@ -1,9 +1,9 @@
 import {SIZE_SCALE} from './constants.js';
+import {getNewPhotoPreview} from './photo-upload-form.js';
 
 const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
 const scaleControlValue = document.querySelector('.scale__control--value');
-const newPhotoPreview = document.querySelector('.img-upload__preview').querySelector('img');
 
 let currentScale = SIZE_SCALE.DEFAULT;
 
@@ -12,7 +12,7 @@ const updateScaleValue = () => {
 };
 
 const updatePhotoScale = () => {
-  newPhotoPreview.style.transform = `scale(${currentScale / 100})`;
+  getNewPhotoPreview().style.transform = `scale(${currentScale / 100})`;
 };
 
 const clickOnScaleControlSmaller = () => {
@@ -31,7 +31,7 @@ const clickOnScaleControlBigger = () => {
   }
 };
 
-const initializeScale = () => {
+const initializeScale = (changeNewPhotoPreview) => {
   currentScale = SIZE_SCALE.DEFAULT;
   updateScaleValue();
   updatePhotoScale();

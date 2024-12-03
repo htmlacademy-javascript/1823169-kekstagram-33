@@ -32,6 +32,8 @@ const DEBOUNCE_TIME = 500;
 
 const SHOW_ALERT_TIME = 5000;
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png', 'bmp', 'webp'];
+
 const SIZE_SCALE = {
   MIN: 25,
   MAX: 100,
@@ -107,4 +109,5 @@ export {BASE_URL,
   SIZE_SCALE,
   EFFECTS,
   DEBOUNCE_TIME,
-  SHOW_ALERT_TIME};
+  SHOW_ALERT_TIME,
+  FILE_TYPES};
