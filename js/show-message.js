@@ -1,4 +1,5 @@
 import {body, isEscapeKey} from './utils.js';
+import {SHOW_ALERT_TIME} from './constants.js';
 
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const dataErrorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
@@ -48,7 +49,7 @@ const showDataError = () => {
 
   setTimeout(() => {
     body.removeChild(message);
-  }, 5000);
+  }, SHOW_ALERT_TIME);
 };
 
 export {showError, showDataError, showSuccess};
