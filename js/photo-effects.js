@@ -1,6 +1,6 @@
+import {getNewPhotoPreview} from './photo-upload-form.js';
 import {EFFECTS} from './constants.js';
 
-const imagePreview = document.querySelector('.img-upload__preview img');
 const effectsList = document.querySelector('.effects__list');
 const effectLevel = document.querySelector('.effect-level__value');
 const effectLevelSlider = document.querySelector('.effect-level__slider');
@@ -23,10 +23,10 @@ const applyEffect = (value) => {
   effectLevel.value = value;
 
   if (currentEffect.name === 'none') {
-    imagePreview.style.filter = 'none';
+    getNewPhotoPreview().style.filter = 'none';
     effectLevelContainer.style.display = 'none';
   } else {
-    imagePreview.style.filter = `${currentEffect.filter}(${value}${currentEffect.unit})`;
+    getNewPhotoPreview().style.filter = `${currentEffect.filter}(${value}${currentEffect.unit})`;
     effectLevelContainer.style.display = 'block';
   }
 };
