@@ -6,13 +6,32 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-function openModal (modalName) {
+function clearInputs () {
+  const inputs = document.querySelectorAll('input:not([type="radio"])');
+  const textareas = document.querySelectorAll('textarea');
+
+  inputs.forEach((input) => {
+    input.value = '';
+  });
+
+  textareas.forEach((textarea) => {
+    textarea.value = '';
+  });
+}
+
+function openModal(modalName) {
   modalName.classList.remove('hidden');
   body.classList.add('modal-open');
 
   const onEscapePress = (evt) => {
     if (isEscapeKey(evt)) {
+      const errorElement = document.querySelector('.error');
       evt.preventDefault();
+
+      if (errorElement) {
+        return;
+      }
+
       closeModal(modalName);
       document.removeEventListener('keydown', onEscapePress);
     }
@@ -24,6 +43,7 @@ function openModal (modalName) {
 function closeModal (modalName) {
   modalName.classList.add('hidden');
   body.classList.remove('modal-open');
+  clearInputs();
 }
 
 function debounce (callback, timeoutDelay = DEBOUNCE_TIME) {
@@ -44,6 +64,6 @@ function shuffleArray(array) {
   }
 
   return shuffled;
-};
+}
 
 export {openModal, closeModal, isEnterKey, isEscapeKey, body, shuffleArray, debounce};

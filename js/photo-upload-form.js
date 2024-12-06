@@ -11,8 +11,8 @@ const photoUploadOpen = document.querySelector('.img-upload__input');
 const newPhotoInputs = [newPhotoHashtagsInput, newPhotoDescriptionInput];
 const newPhotoSubmit = document.querySelector('.img-upload__submit');
 const newPhotoClose = document.querySelector('.img-upload__cancel');
-
 const newPhotoPreview = document.querySelector('.img-upload__preview').querySelector('img');
+const effectsPreviews = document.querySelectorAll('.effects__preview');
 
 newPhotoInputs.forEach ((input) => {
   input.addEventListener('keydown', (evt) => {
@@ -30,6 +30,9 @@ photoUploadOpen.addEventListener('change', () => {
 
   if (matches) {
     newPhotoPreview.src = URL.createObjectURL(file);
+    effectsPreviews.forEach((preview) => {
+      preview.style.backgroundImage = `url(${newPhotoPreview.src})`;
+    });
   }
 
   initializeScale(newPhotoPreview);
@@ -45,22 +48,24 @@ photoUploadForm.addEventListener('input', () => {
 photoUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   newPhotoSubmit.disabled = true;
+
   sendData(new FormData(evt.target))
     .then(() => {
       showSuccess();
+      evt.target.reset();
       destroySlider(newPhotoPreview);
       closeModal(photoUploadWindow);
     })
-    .catch((err) => {
+    .catch(() => {
       showError();
     })
-
     .finally(() => {
       newPhotoSubmit.disabled = false;
     });
 });
 
 newPhotoClose.addEventListener('click', () => {
+  photoUploadForm.reset();
   destroySlider(newPhotoPreview);
   closeModal(photoUploadWindow);
 });

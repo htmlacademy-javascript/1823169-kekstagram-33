@@ -9,7 +9,7 @@ const newPhotoDescriptionInput = document.querySelector('.text__description');
 const pristine = new Pristine(photoUploadForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper--error',
+  errorTextClass: 'img-upload__field-wrapper--error'
 });
 
 pristine.addValidator (
