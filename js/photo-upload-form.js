@@ -1,5 +1,5 @@
 import {initializeScale} from './photo-size-scale.js';
-import {initializeSlider} from './photo-effects.js';
+import {initializeSlider, destroySlider} from './photo-effects.js';
 import {openModal, closeModal, isEscapeKey} from './utils.js';
 import {pristine, photoUploadForm, newPhotoHashtagsInput, newPhotoDescriptionInput} from './pristine.js';
 import {showError, showSuccess} from './show-message.js';
@@ -11,10 +11,8 @@ const photoUploadOpen = document.querySelector('.img-upload__input');
 const newPhotoInputs = [newPhotoHashtagsInput, newPhotoDescriptionInput];
 const newPhotoSubmit = document.querySelector('.img-upload__submit');
 const newPhotoClose = document.querySelector('.img-upload__cancel');
-
-function getNewPhotoPreview () {
-  return document.querySelector('.img-upload__preview').querySelector('img');
-}
+const newPhotoPreview = document.querySelector('.img-upload__preview').querySelector('img');
+const effectsPreviews = document.querySelectorAll('.effects__preview');
 
 newPhotoInputs.forEach ((input) => {
   input.addEventListener('keydown', (evt) => {
@@ -31,11 +29,14 @@ photoUploadOpen.addEventListener('change', () => {
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
   if (matches) {
-    getNewPhotoPreview().src = URL.createObjectURL(file);
+    newPhotoPreview.src = URL.createObjectURL(file);
+    effectsPreviews.forEach((preview) => {
+      preview.style.backgroundImage = `url(${newPhotoPreview.src})`;
+    });
   }
 
-  initializeScale();
-  initializeSlider();
+  initializeScale(newPhotoPreview);
+  initializeSlider(newPhotoPreview);
   openModal(photoUploadWindow);
 });
 
@@ -47,22 +48,24 @@ photoUploadForm.addEventListener('input', () => {
 photoUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   newPhotoSubmit.disabled = true;
+
   sendData(new FormData(evt.target))
     .then(() => {
       showSuccess();
+      evt.target.reset();
+      destroySlider(newPhotoPreview);
       closeModal(photoUploadWindow);
     })
-    .catch((err) => {
+    .catch(() => {
       showError();
     })
-
     .finally(() => {
       newPhotoSubmit.disabled = false;
     });
 });
 
 newPhotoClose.addEventListener('click', () => {
+  photoUploadForm.reset();
+  destroySlider(newPhotoPreview);
   closeModal(photoUploadWindow);
 });
-
-export {getNewPhotoPreview};

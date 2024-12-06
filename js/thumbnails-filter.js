@@ -1,6 +1,5 @@
 import {renderPhotosThumbnails, containerPhotosThumbnails} from './photo-thumbnails.js';
 import {shuffleArray, debounce} from './utils.js';
-import {originalPhotosList} from './main.js';
 
 const thumbnailsFilters = document.querySelector('.img-filters');
 const filterButtons = document.querySelectorAll('.img-filters__button');
@@ -17,7 +16,7 @@ function updateActiveButton(clickedButton) {
   clickedButton.classList.add('img-filters__button--active');
 }
 
-function clearGallery () {
+function clearGallery() {
   const thumbnails = containerPhotosThumbnails.querySelectorAll('.picture');
   thumbnails.forEach((thumbnail) => thumbnail.remove());
 }
@@ -30,33 +29,32 @@ function sortPhotosByComments(photos, order = 'desc') {
   });
 }
 
-const debouncedRenderRandom = debounce(() => {
-  const shuffledPhotos = shuffleArray(originalPhotosList).slice(0, numberOfPhotosToShow);
-
-  clearGallery();
-  renderPhotosThumbnails(shuffledPhotos);
-  updateActiveButton(filterRandomButton);
-});
-
-const debouncedRenderDiscussed = debounce(() => {
-  const sortedPhotos = sortPhotosByComments(originalPhotosList);
-
-  clearGallery();
-  renderPhotosThumbnails(sortedPhotos);
-  updateActiveButton(filterDiscussedButton);
-});
-
-const debouncedRenderDefault = debounce(() => {
-  clearGallery();
-  renderPhotosThumbnails(originalPhotosList);
-  updateActiveButton(filterDefaultButton);
-});
-
-function initializeThumbnailsFilters () {
+function initializeThumbnailsFilters (data) {
   thumbnailsFilters.classList.remove('img-filters--inactive');
+
+  const debouncedRenderRandom = debounce(() => {
+    const shuffledPhotos = shuffleArray([...data]).slice(0, numberOfPhotosToShow);
+    clearGallery();
+    renderPhotosThumbnails(shuffledPhotos);
+    updateActiveButton(filterRandomButton);
+  });
+
+  const debouncedRenderDiscussed = debounce(() => {
+    const sortedPhotos = sortPhotosByComments(data);
+    clearGallery();
+    renderPhotosThumbnails(sortedPhotos);
+    updateActiveButton(filterDiscussedButton);
+  });
+
+  const debouncedRenderDefault = debounce(() => {
+    clearGallery();
+    renderPhotosThumbnails(data);
+    updateActiveButton(filterDefaultButton);
+  });
+
+  filterRandomButton.addEventListener('click', debouncedRenderRandom);
+  filterDiscussedButton.addEventListener('click', debouncedRenderDiscussed);
+  filterDefaultButton.addEventListener('click', debouncedRenderDefault);
 }
 
-window.addEventListener('load', initializeThumbnailsFilters);
-filterRandomButton.addEventListener('click', debouncedRenderRandom);
-filterDiscussedButton.addEventListener('click', debouncedRenderDiscussed);
-filterDefaultButton.addEventListener('click', debouncedRenderDefault);
+export {initializeThumbnailsFilters};
