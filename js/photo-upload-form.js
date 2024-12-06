@@ -1,5 +1,5 @@
 import {initializeScale} from './photo-size-scale.js';
-import {initializeSlider} from './photo-effects.js';
+import {initializeSlider, destroySlider} from './photo-effects.js';
 import {openModal, closeModal, isEscapeKey} from './utils.js';
 import {pristine, photoUploadForm, newPhotoHashtagsInput, newPhotoDescriptionInput} from './pristine.js';
 import {showError, showSuccess} from './show-message.js';
@@ -12,9 +12,7 @@ const newPhotoInputs = [newPhotoHashtagsInput, newPhotoDescriptionInput];
 const newPhotoSubmit = document.querySelector('.img-upload__submit');
 const newPhotoClose = document.querySelector('.img-upload__cancel');
 
-function getNewPhotoPreview () {
-  return document.querySelector('.img-upload__preview').querySelector('img');
-}
+const newPhotoPreview = document.querySelector('.img-upload__preview').querySelector('img');
 
 newPhotoInputs.forEach ((input) => {
   input.addEventListener('keydown', (evt) => {
@@ -31,11 +29,11 @@ photoUploadOpen.addEventListener('change', () => {
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
   if (matches) {
-    getNewPhotoPreview().src = URL.createObjectURL(file);
+    newPhotoPreview.src = URL.createObjectURL(file);
   }
 
-  initializeScale();
-  initializeSlider();
+  initializeScale(newPhotoPreview);
+  initializeSlider(newPhotoPreview);
   openModal(photoUploadWindow);
 });
 
@@ -50,6 +48,7 @@ photoUploadForm.addEventListener('submit', (evt) => {
   sendData(new FormData(evt.target))
     .then(() => {
       showSuccess();
+      destroySlider(newPhotoPreview);
       closeModal(photoUploadWindow);
     })
     .catch((err) => {
@@ -62,7 +61,6 @@ photoUploadForm.addEventListener('submit', (evt) => {
 });
 
 newPhotoClose.addEventListener('click', () => {
+  destroySlider(newPhotoPreview);
   closeModal(photoUploadWindow);
 });
-
-export {getNewPhotoPreview};

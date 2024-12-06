@@ -6,14 +6,6 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-function clearInputs () {
-  const inputs = document.querySelectorAll('input, textarea');
-
-  inputs.forEach((input) => {
-    input.value = '';
-  });
-}
-
 function openModal (modalName) {
   modalName.classList.remove('hidden');
   body.classList.add('modal-open');
@@ -32,7 +24,6 @@ function openModal (modalName) {
 function closeModal (modalName) {
   modalName.classList.add('hidden');
   body.classList.remove('modal-open');
-  clearInputs();
 }
 
 function debounce (callback, timeoutDelay = DEBOUNCE_TIME) {
