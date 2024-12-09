@@ -5,26 +5,11 @@ const ROUTE = {
   SEND_DATA: '/',
 };
 
-const PHOTO_DESCRIPTION_ARRAY_LENGTH = 25;
-
-const COMMENTS_QUANTITY = {
-  min: 0,
-  max: 30
-};
-
-const AVATARS_QUANTITY = {
-  min: 1,
-  max: 6
-};
-
-const LIKES_QUANTITY = {
-  min: 15,
-  max: 200
-};
-
 const COMMENTS_PER_PORTION = 5;
 
 const MAX_HASHTAGS = 5;
+
+const HASHTAG_REGEX = /^#[a-zA-Zа-яА-ЯёЁ0-9]{1,19}$/;
 
 const MAX_DESCRIPTION_LENGTH = 140;
 
@@ -99,11 +84,8 @@ const EFFECTS = {
 
 export {BASE_URL,
   ROUTE,
-  PHOTO_DESCRIPTION_ARRAY_LENGTH,
-  COMMENTS_QUANTITY,
-  AVATARS_QUANTITY,
-  LIKES_QUANTITY,
   MAX_HASHTAGS,
+  HASHTAG_REGEX,
   MAX_DESCRIPTION_LENGTH,
   COMMENTS_PER_PORTION,
   SIZE_SCALE,

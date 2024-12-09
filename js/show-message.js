@@ -11,13 +11,13 @@ const showMessage = (template, type) => {
 
   const closeButton = message.querySelector(`.${type}__button`);
 
-  const onEscKeydown = (evt) => {
+  const closeOnEscapeKeydown = (evt) => {
     if (isEscapeKey (evt)) {
       closeMessage();
     }
   };
 
-  const onOutsideClick = (evt) => {
+  const closeOnnOutsideClick = (evt) => {
     const messageInner = message.querySelector(`.${type}__inner`);
     const isClickInside = messageInner.contains(evt.target);
 
@@ -28,13 +28,13 @@ const showMessage = (template, type) => {
 
   function closeMessage () {
     message.remove();
-    document.removeEventListener('keydown', onEscKeydown);
-    document.removeEventListener('click', onOutsideClick);
+    document.removeEventListener('keydown', closeOnEscapeKeydown);
+    document.removeEventListener('click', closeOnnOutsideClick);
   }
 
   closeButton.addEventListener('click', closeMessage);
-  document.addEventListener('keydown', onEscKeydown);
-  document.addEventListener('click', onOutsideClick);
+  document.addEventListener('keydown', closeOnEscapeKeydown);
+  document.addEventListener('click', closeOnnOutsideClick);
 
   return message;
 };

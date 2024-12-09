@@ -1,9 +1,8 @@
-import {MAX_HASHTAGS} from './constants.js';
+import {MAX_HASHTAGS, HASHTAG_REGEX} from './constants.js';
 
 
 function validateHashtagText (hashtag) {
-  const hashtagRegex = /^#[a-zA-Zа-яА-ЯёЁ0-9]{1,19}$/;
-  return hashtagRegex.test(hashtag);
+  return HASHTAG_REGEX.test(hashtag);
 }
 
 function validateHashtags (value) {

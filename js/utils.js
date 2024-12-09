@@ -23,7 +23,7 @@ function openModal(modalName) {
   modalName.classList.remove('hidden');
   body.classList.add('modal-open');
 
-  const onEscapePress = (evt) => {
+  const closeOnEscapeKeydown = (evt) => {
     if (isEscapeKey(evt)) {
       const errorElement = document.querySelector('.error');
       evt.preventDefault();
@@ -33,11 +33,11 @@ function openModal(modalName) {
       }
 
       closeModal(modalName);
-      document.removeEventListener('keydown', onEscapePress);
+      document.removeEventListener('keydown', closeOnEscapeKeydown);
     }
   };
 
-  document.addEventListener('keydown', onEscapePress);
+  document.addEventListener('keydown', closeOnEscapeKeydown);
 }
 
 function closeModal (modalName) {
@@ -55,15 +55,15 @@ function debounce (callback, timeoutDelay = DEBOUNCE_TIME) {
   };
 }
 
-function shuffleArray(array) {
-  const shuffled = [...array];
+function shuffleArray(elements) {
+  const shuffledElements = [...elements];
 
-  for (let i = shuffled.length - 1; i > 0; i--) {
+  for (let i = shuffledElements.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    [shuffledElements[i], shuffledElements[j]] = [shuffledElements[j], shuffledElements[i]];
   }
 
-  return shuffled;
+  return shuffledElements;
 }
 
 export {openModal, closeModal, isEnterKey, isEscapeKey, body, shuffleArray, debounce};
